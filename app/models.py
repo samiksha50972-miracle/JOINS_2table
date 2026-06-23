@@ -23,7 +23,7 @@ class Emp(models.Model):
 
 
     def __str__(self):
-        return str(self.empno)
+        return self.ename
 
 
 

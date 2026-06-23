@@ -1,14 +1,26 @@
+
+
 from django.shortcuts import render
 from app.models import *
+
+
 # Create your views here.
 
-def empTodept(request):
-    QSLEDO=Emp.objects.select_related('deptno').all()
+from django.db.models import Prefetch
 
-    d={'QSLEDO':QSLEDO}
-    return render(request,'empTodept.html',d)
 
-def empTomgr(request):
-    QSLEMO=Emp.objects.select_related('mgr').all()
-    d={'QSLEMO':QSLEMO}
-    return render(request,'empTomgr.html',d)
+def  DeptToEmp(request):
+    #syntax1: all dept and all employee
+    QSLDEO=Dept.objects.prefetch_related('emp_set').all()
+    #syntax2:particular dept but all employess
+    QSLDEO=Dept.objects.prefetch_related('emp_set').filter(dloc='chicago')
+    #synatax 3: particular employees with respective salaries and their department
+    QSLDEO=Dept.objects.prefetch_related(Prefetch('emp_set',queryset=Emp.objects.filter(ename='blake')))
+    d={'QSLDEO':QSLDEO}
+    return render(request,'DeptToEmp.html',d)
+
+
+
+
+
+

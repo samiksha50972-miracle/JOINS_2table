@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>Dept To Emp Join</h1>
+
+        {% for DEO in QSLDEO %}
+            
+            <h1>{{DEO.deptno}}  {{DEO.dname}}  {{DEO.dloc}}</h1>
+
+            {% if DEO.emp_set.all %}
+                <table border="4px">
+                <tr>
+                    <th>empno</th>
+                    <th>ename</th>
+                    <th>deptno</th>
+                    <th>job</th>
+                    <th>comm</th>
+                    <th>mgr</th>
+                    <th>sal</th>
+                    <th>hiredate</th>
+                </tr>
+                {% for EO in DEO.emp_set.all %}
+                <tr>
+                    <td>{{EO.empno}}</td>
+                    <td>{{EO.ename}}</td>
+                    <td>{{EO.deptno}}</td>
+                    <td>{{EO.job}}</td>
+                    <td>{{EO.comm}}</td>
+                    <td>{{EO.mgr}}</td>
+                    <td>{{EO.sal}}</td>
+                    <td>{{EO.hiredate}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+            
+
+        {% endfor %}
+    </center>
+</body>
+</html>
