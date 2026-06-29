@@ -21,6 +21,7 @@ from app.views import *
 urlpatterns = [
     
     path('DeptToEmp/',DeptToEmp,name="DeptToEmp"),
+    path('empTodept/',EmpToDept,name="EmpToDept"),
 ]
 
 
